@@ -1,0 +1,247 @@
+@media print{
+	body {
+		padding: 0;
+	}
+
+	.container {
+		max-width: 100%;
+		background-color: #fff;		
+		padding: 0;
+	}
+
+	h2 {
+	    color: lightskyblue;
+	    text-transform: uppercase;
+	    font-weight: 300;
+	}
+
+	ol {
+		padding-left: 0;
+		max-width: 300px;			
+		margin-left: auto;
+		margin-right: auto;			
+	}
+
+	ol li {
+		list-style-type: none;
+	}
+
+	ol li:nth-child(even) {
+		text-align: right;
+	}
+
+	ol li:nth-child(odd) {
+		text-align: left;
+	}
+
+	ol li::first-letter {
+		font-size: 200%;
+		color: #76cdd7;
+	}
+
+	ol li a {
+		color: black;		
+	}
+
+	section:last-of-type,   
+	.tm-sidebar, 
+	.tm-team-img,
+	.boxes,
+	.carousel-indicators,
+	#about{
+		display: none;
+		visibility: hidden;
+	}
+
+	.tm-main-content {
+	    padding-top: 0;
+	   
+	}
+	.tm-main-content > section {
+		padding: 0 80px 0 80px;
+	}
+
+	.tm-content-box{
+		margin-bottom: 0;
+	}
+
+	.padding-medium, .carousel {
+		padding: 0;
+	}
+
+	.tm-team-description-container, .tm-content-box{
+		text-align: center;
+		max-width: 100%;
+	}
+}
+
+@media screen{
+	.gallery-container .box-bg h2:hover {
+		color: white;
+		background-color: lightskyblue;
+	}
+
+	.tm-sidebar, .tm-content-header, section {
+		box-shadow: 0 0 10px rgba(61, 55, 61, 0.7);
+	}
+
+	.tm-banner {
+		background-color: #76cdd7;	
+	}
+
+	.tm-banner-inner {
+		background-color: #fff;
+		text-shadow: 0 4px 1px #76cdd7, 0 10px 2px #76cdd7;	
+		letter-spacing: 3px;
+		word-spacing:  5px;	
+	}
+
+	.flex-2-col {
+		display: flex;
+	}
+
+	.flex-item {
+		display: flex;
+		flex-direction: column;
+	    justify-content: center;
+	}
+
+	.tm-content-box ol li {
+		list-style-type: lower-roman;
+	}
+
+	.tm-main-content section::before {
+	    content: '';
+	    width: 0;
+	    height: 0;
+	    border-top: 50px solid lightskyblue;
+	    border-right: 50px solid transparent;
+	}
+
+	.heading h2 {
+	    color: #76cdd7;
+	    text-align: center;
+	}
+
+	.heading .text::after {
+		content: "New"; 
+		color: red; 
+		font-size: 10px;
+		font-weight: bold; 
+		position: absolute; 
+		font-variant: small-caps;
+	}
+
+	.heading ol a {
+		color: black;
+		padding-left: 2px;
+		border-left: 2px solid transparent;
+	}
+
+	.heading ol a:hover {
+		color: #ffb347;
+		font-weight: bold; 
+		border-left: 2px solid #ffb347;
+	}
+
+	.heading ol a:visited {
+		color: #ffb347;
+	}
+
+	.box-work {		
+		padding: 10px;
+	}
+
+	.box-work:nth-child(even) {
+		background-color: #f5f5f5;
+		padding: 10px;
+	}
+
+	.box-work p {
+		text-indent: 0;
+		line-height: normal;
+	}
+
+	.box-work p::first-letter {
+		font-size: 200%;
+	}
+
+	.mandatory-field::after {
+		content: "";
+		background: url(../img/email-icon.png) no-repeat;
+		background-size: 30px;
+		background-position: right;
+		top: 4px;
+		width: 30px;
+		height: 30px;
+	}
+
+	.tm-main-nav ul li:hover {
+		background-color: lightgray;
+	}
+
+	section h2+p {
+		font-style: italic;;
+	}
+
+	section p {
+		text-indent: 20px;
+		line-height: 1.8;
+	} 
+
+	.form-control {
+		border-color: lightskyblue;
+		border-width: 2px;		
+		border-style: none none solid none;
+	}
+
+	.form-control:focus {
+		color: #fff;
+		background-color: #76cdd7;
+		border-color: lightskyblue;
+		border-width: 2px;		
+		border-style: solid;
+	}
+
+	.form-control:focus::placeholder {
+		color: #fff;
+	}
+
+	#contact_message {
+		border-radius: 5px;		
+		border-style: solid;
+		resize: none;
+	}
+
+	.contact-form button {
+		width: 160px;
+		height: 54px;
+		float: right;
+		color: lightskyblue;
+		background-color: #fff;
+		font-weight: 300;
+		border-radius: 0;
+		border-color: lightskyblue;
+		border-width: 2px;		
+		border-style: solid;
+	}
+
+	.contact-form button:hover {
+		color: #fff;
+		background-color: lightskyblue;
+		font-weight: 300;
+		border-color: lightskyblue;		
+	}
+
+	.tm-banner-text {
+		animation: horizontal 6s linear 2s infinite;
+	}
+
+	@-webkit-keyframes horizontal {	
+		0% { opacity: 1; }	
+		25% { opacity: 1; -webkit-transform: rotateY(180deg); }	
+		50% { opacity: 0; }
+		75% { opacity: 1; -webkit-transform: translateX(0px); }
+		100% { opacity: 1; }		
+	}
+}
