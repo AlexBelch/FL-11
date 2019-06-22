@@ -242,25 +242,25 @@
 		color: #fff;
 		background-color: lightskyblue;
 		font-weight: 300;
-		border-color: lightskyblue;		
+		border-color: skyblue;		
 	}
 
 	.contact-form .submit-btn:active {
 		color: #fff;
 		background-color: lightskyblue;
 		font-weight: 300;
-		border-color: lightskyblue;		
+		border-color: skyblue;		
 	}
 
 	.tm-banner-text {
 		animation: horizontal 6s linear 2s infinite;
 	}
 
-	@-webkit-keyframes horizontal {	
+	@keyframes horizontal {	
 		0% { opacity: 1; }	
-		25% { opacity: 1; -webkit-transform: rotateY(180deg); }	
+		25% { opacity: 1; transform: rotateY(180deg); }	
 		50% { opacity: 0; }
-		75% { opacity: 1; -webkit-transform: translateX(0px); }
+		75% { opacity: 1; transform: translateX(0px); }
 		100% { opacity: 1; }		
 	}
 }
