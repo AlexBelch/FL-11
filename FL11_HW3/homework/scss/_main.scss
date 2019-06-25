@@ -1,0 +1,273 @@
+@mixin transform($property){	
+	transform: $property;
+}
+
+$map-colors: (
+	background-color-body: $background-color-body,
+	color-body: $color-body,
+	background-lightblack: $background-lightblack,
+	border-lightblack: $border-lightblack,
+	button: $button-color,
+	header-underline: $header-underline,
+	header-text: $header-text,
+	card-underline: $card-underline,
+    gradient-start: $button-color, 
+    gradient-end: $gradient-end,
+    text-gray: #c0c3c9,	
+);
+
+%span_logo_footer {
+	display: block;			    
+    font-weight: normal;
+    font-size: 13px;
+    margin-top: $span-logo-margin-top;
+    padding-left: $span-logo-padding-left;
+}
+
+%p_logo_footer {	
+	font-family: $font-stack-second;
+	font-weight: bold;
+	font-size: 30px;				
+	padding-left: 69px;	
+	margin-top: $p-logo-margin-top;
+}
+
+%button {
+	font-family: $font-stack-main;	
+	font-size: 22px;
+	color: white;			
+	background-color: map-get($map-colors, button);
+	border: 0;
+	margin-left: 195px;
+	margin-top: 57px;
+	width: 178px;
+	height: 60px;
+	border-radius: 3px;
+}
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background-color: map-get($map-colors, background-color-body);
+	color: map-get($map-colors, color-body);
+
+	.landing-logo {
+		padding-top: 30px;
+		padding-left: 200px;
+
+		img {
+			float: left;
+			@include transform(scale(1.2 , 1.2));
+		}
+
+		p {
+			@extend %p_logo_footer;
+
+			span {				
+				@extend %span_logo_footer;
+			}				
+		}
+	}
+
+	.header {
+		font-family: $font-stack-main;
+
+		.header-wrap {
+			background-image: $header-background-image;			
+			background-repeat: round;
+			background-size: cover;
+			border-bottom-right-radius: 37%;
+			height: 900px;
+										
+			.header_heading {				
+				font-weight: bold;
+			    font-size: 90px;
+			    margin-bottom: 45px;    			
+				position: relative;
+				z-index: 1;
+				width: 610px;
+				padding-left: 196px;
+    			margin-top: 90px;
+    			line-height: 1;
+
+    			&::after {
+				    content: '';
+				    background-color: map-get($map-colors, header-underline);
+				    display: block;
+				    height: 32px;
+				    width: 378px;
+				    position: absolute;
+				    z-index: -1;
+				    margin-top: -32px;
+				}
+			}		
+
+			.header_text {
+				color: map-get($map-colors, header-text);
+				font-family: $font-stack-second;
+				padding-left: 196px;
+				white-space: pre-line;				
+   				letter-spacing: 0.03em;
+			    font-size: 19px;
+			    word-spacing: 0.03em;
+			}
+
+			.header_button {
+				@extend %button;   			
+			}			
+		}				
+	}
+
+	.section {
+		font-family: $font-stack-main;
+		padding-bottom: 215px;
+
+		.section_text {			
+			font-size: 51px;
+		    text-align: center;
+		    font-weight: bold;
+		    padding-left: 24px;
+		    margin-top: 46px;
+
+		    &::after {
+			    content: '';
+			    background-color: map-get($map-colors, header-underline);
+			    display: block;
+			    height: 16px;
+			    width: 235px;
+			    position: absolute;
+			    z-index: -1;
+			    margin-top: -25px;
+	    		margin-left: calc(50% - 3px);
+			}
+		}		
+
+		.section_card_wrap {
+			display: flex;
+			padding-left: 193px;
+    		padding-right: 175px;
+
+    		.section_card {
+    			background-color: map-get($map-colors, background-lightblack);
+				color: map-get($map-colors, text-gray);
+    			border: 24px solid map-get($map-colors, border-lightblack);
+    			border-radius: 7px;
+    			height: 522px;
+    			width: 445px;
+    			margin-right: 20px;
+    			text-align: center;
+
+    			.section_card_img {					
+					margin-bottom: 14px;
+					border-radius: 5px;
+					width: 100%;
+				}
+
+				.section_card_heading {
+					width: fit-content;
+					color: #fff;
+					font-size: 29px;
+					font-weight: bold;
+    				margin: auto;
+
+					.section_card_underline	{
+						display: block;
+						background-color: map-get($map-colors, card-underline);
+						height: 16px;
+						margin-top: -15px;
+					}
+				}
+
+				.section_card_text {
+					font-family: $font-stack-second;
+					font-size: 20px;
+					margin-top: 16px;
+				}
+    		}
+		}
+
+		.section_banner {
+			background: linear-gradient(0.25turn, map-get($map-colors, gradient-start), map-get($map-colors, gradient-end));	
+			margin-top: 170px;
+			margin-left: 360px;
+			margin-right: 340px;			
+    		height: 180px;
+    		border-radius: 8px;
+    		position: relative;
+    		z-index: 1;
+    		display: flex;
+
+    		.section_banner_text_wrap {
+				padding-top: 1px;
+			    padding-left: 128px;
+			   
+			    .section_banner_heading {
+			    	font-size: 38px;
+			    	font-weight: bold;
+			    	margin-top: 33px;
+			    	margin-bottom: 21px;
+
+			    	&::after {
+					    content: '';
+					    background-color: map-get($map-colors, card-underline); 
+					    display: block;
+					    height: 16px;
+					    width: 80px;
+					    position: absolute;
+					    z-index: -1;
+					    margin-top: -21px;
+    					margin-left: 152px
+					}
+			    }		    
+
+			    .section_banner_text {
+			    	color: map-get($map-colors, text-gray);
+			    	font-size: 20px;
+			    	margin-top: 0;
+			    }
+			}
+
+    		.section_banner_button {
+    			@extend %button;
+    			margin-top: 62px;
+    			margin-left: 250px;  			
+			}
+		}
+	}
+
+	.footer {
+		background-color: map-get($map-colors, background-lightblack);
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 300px;
+
+		.footer-wrap {
+			display: flex;
+			padding-top: 140px;
+			color: map-get($map-colors, text-gray);
+			font-family: $font-stack-second;		
+
+			.footer_text {		    
+			    font-size: 17px;
+			    padding-left: 370px;
+			    padding-right: 208px;
+			    margin-top: 13px;
+			    width: 20%;
+			    text-align: left;
+			}
+
+			.footer-cr {
+				margin-left: 171px;
+	    		margin-top: 38px;
+	    		font-size: 20px;
+			}
+		}		
+	}
+}
