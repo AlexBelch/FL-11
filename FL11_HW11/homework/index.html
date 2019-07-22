@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework 11 - TODO Cat List</title>
+  <link rel="stylesheet" href="./assets/material-icons/material-icons.css">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <div id="root">
+  	<div class="wrapper">
+  		<div>
+  			<h1>TODO Cat List</h1>
+  			<h4 id="notification">Maximum item per list are created</h4>
+  		</div>
+  		<div class="list-add">
+  			<input id="list-add-name" type="text" name="text" placeholder="Add new action">
+  			<button id="list-add-btn" class="button-list" disabled><i class="material-icons md-48">add_box</i></button>
+  		</div>
+  		
+  		<div class="list-tasks-wrapper">
+  			<hr/>
+  			<div id="list-tasks">
+  				<!--<div class="list-item-tasks">
+  					<input type="checkbox" name="checkbox">
+  					<div> esdfsfsdf</div>
+  					<button class="button-list"><i class="material-icons md-36">edit</i></button>
+  					<button class="button-list"><i class="material-icons md-36">delete</i></button>
+  				</div> -->
+  			</div>
+  		</div>
+  		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+</div>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+  	</div>
+
+  </div>
+
+  <script src="./src/app.js"></script>
+  <script type="text/javascript">
+  	function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+  </script>
+</body>
+</html>
