@@ -1,49 +1,49 @@
+[draggable] {
+  user-select: none;
+}
+
 body {
   margin:0px; 
   padding:0px;
   font-family: roboto;
-  /*background-color: #000;*/
   color: blue;
   max-width: 1000px;
   margin: auto;
 }
 
 hr {
-	height: 10px;
-    background-color: blue;
+  height: 10px;
+  background-color: blue;
 }
 
 #notification {
-	display: none;
+  display: none;
 }
 
 .wrapper {
-	display: grid;
-	grid-template-columns: 90%;	
-	justify-content: center;
+  display: grid;
+  grid-template-columns: 90%;
+  justify-content: center;
 }
 
 .button-list {
-	background-color: transparent;
-	border:none;
-	color: blue;
-	outline-style: none;
+  background-color: transparent;
+  border:none;
+  color: blue;
+  outline-style: none;
 }
 
 .list-add {
-	display: flex;
-
+  display: flex;
 }
 
 .list-item-tasks {
-	display: flex;
+  display: flex;
 }
 
-#div1, #div2 {
-  float: left;
-  width: 100px;
-  height: 35px;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid black;
+.list-item-tasks.dragElem {
+  opacity: 0.4;
+}
+.list-item-tasks.over {
+  border-top: 2px solid blue;
 }
