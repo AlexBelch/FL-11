@@ -1,0 +1,55 @@
+.main-todo{
+	text-align: center;
+}
+
+.main-todo-items{
+	margin-top: 50px;
+	display: flex;
+	align-items: center;
+	/*align-content: center;*/
+	flex-direction: column;
+}
+
+.main-todo-item{	
+	display: grid;
+    grid-template-columns: 1fr 2fr 1fr;	
+    align-items: center;
+}
+
+.main-todo-add,  .main-todo-modify{
+    text-align: center;		
+}
+
+.main-todo-add-buttons,  .main-todo-modify-buttons{
+    margin-top: 20px;	
+}
+
+.main-todo-add-buttons #btn_cancel1, .main-todo-modify-buttons #btn_cancel2{
+	margin-right: 20px;
+}
+
+.button-del{
+  background-color: transparent;
+  border:none;
+  color: red;
+  outline-style: none;
+}
+
+.button-close{
+  background-color: transparent;
+  border:none;
+  color: white;
+  outline-style: none;
+}
+
+.main-todo-modify-alert{
+	color: white;
+	background-color: red;
+	display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 50% 50%;
+    width: 30%;
+    padding: 15px; 
+    position: absolute;  
+    top: 0;
+}
