@@ -1,23 +1,16 @@
 const rootNode = document.getElementById('root');
 let todoItems = [];
 let id = 1;
-//const todoItems = [
-//{isDone: false, id: 1, description: 'Todo 1'}
-//];
 
 const myStorage = window.localStorage;
-console.log(myStorage.getItem('TODOITEMS'));
-
 if (myStorage.getItem('TODOITEMS') !== null
 	&& myStorage.getItem('TODOITEMS') !== ''
 	&& myStorage.getItem('TODOITEMS') !== '[]') {
 	todoItems = JSON.parse(myStorage.getItem('TODOITEMS'));
 	id = todoItems.reduce((max, item) => item.id > max ? item.id : max, todoItems[0].id) + 1;
 }
-console.log(todoItems);
 
 showMain();
-
 function showMain() {
 	let elemDiv = document.createElement('div');
 	elemDiv.classList.add('main-todo');
@@ -76,11 +69,9 @@ function showMain() {
 			divTask.addEventListener('click', this.editClick);
 			btnDelete.addEventListener('click', this.btnDel);
 		}
-
 		elemDiv.appendChild(elemDivWrap);
 	}
 	rootNode.appendChild(elemDiv);
-
 	document.getElementById('btn_add1').addEventListener('click', this.btnAdd);
 }
 
@@ -128,7 +119,6 @@ function showAdd() {
 
 function showModify() {
 	let id = window.location.hash.replace('#/modify/', '');
-
 	let item = todoItems.filter(item => item.id === parseInt(id, 10));
 
 	let elemDiv = document.createElement('div');
@@ -184,7 +174,6 @@ function checked(e) {
 		todoItems[index].isDone = true;
 
 		const temp = document.getElementById(`divTask${todoItems[index].id}`).parentNode;
-		console.log(temp);
 		document.getElementById(`divTask${todoItems[index].id}`).parentNode.parentNode
 			.removeChild(document.getElementById(`divTask${todoItems[index].id}`)
 				.parentNode.parentNode.children[index]);
@@ -195,9 +184,7 @@ function checked(e) {
 		document.getElementById(`divTask${todoItems[index].id}`).style.backgroundColor = 'white';
 
 		const temp = document.getElementById(`divTask${todoItems[index].id}`).parentNode;
-		//console.log(temp);
 		let placeTo = todoItems.filter(item => item.isDone === false).length;
-		//console.log("placeTo=", placeTo);
 
 		document.getElementById(`divTask${todoItems[index].id}`).parentNode.parentNode
 			.removeChild(document.getElementById(`divTask${todoItems[index].id}`)
@@ -220,45 +207,14 @@ function checked(e) {
 		todoItems.splice(placeTo, 0, todoItems[index]);
 		todoItems.splice(index + 1, 1);
 	}
-
 	myStorage.setItem('TODOITEMS', JSON.stringify(todoItems));
 }
 
 function editClick(e) {
 	let index = Array.prototype.indexOf.call(e.target.parentNode.parentNode.children, e.target.parentNode);
 
-	if (todoItems[index].isDone) {
-		alert(`Error!You can't edit already done item`);
-		let elemDiv = document.createElement('div');
-		elemDiv.classList.add('main-todo-modify-alert');
-		elemDiv.id = 'modify-alert';
-		if (!window.navigator.userAgent.includes('Chrome')) {
-			//console.log("opera");
-			elemDiv.style.right = 0;
-		}
-
-		let elemDiv1 = document.createElement('div');
-		elemDiv1.innerHTML = `Danger!`;
-		elemDiv.appendChild(elemDiv1);
-
-		let elemDivButtons = document.createElement('div');
-		elemDivButtons.classList.add('main-todo-modify-buttons-close');
-		elemDivButtons.id = 'modify-buttons-alert-close';
-
-		let btnCancel = document.createElement('button');
-		btnCancel.classList.add('button-close');
-		btnCancel.name = 'button';
-		btnCancel.id = `btn_cancel2`;
-		btnCancel.innerHTML = `<i class='material-icons '>close</i>`;
-		elemDivButtons.appendChild(btnCancel);
-		elemDiv.appendChild(elemDivButtons);
-
-		let elemDiv2 = document.createElement('div');
-		elemDiv2.innerHTML = `Error!You can't edit already done item`;
-		elemDiv.appendChild(elemDiv2);
-
-		rootNode.appendChild(elemDiv);
-
+	if (todoItems[index].isDone) {		
+		showAlert(`Error! You can't edit already done item`);		
 	} else {
 		window.location.hash = `#/modify/${todoItems[index].id}`;
 	}
@@ -277,7 +233,7 @@ function inputModifyChange(e) {
 }
 
 function btnDel(e) {
-	const two = 2;
+	const two = 2; // hide warning eslint no-magic-numbers
 	let index = Array.prototype.indexOf.call(e.target.parentNode.parentNode.parentNode.children,
 		e.target.parentNode.parentNode);
 
@@ -299,7 +255,7 @@ function btnSave() {
 	const duplicate = todoItems.filter(item => item.description === inputAdd.value);
 
 	if (duplicate.length > 0) {
-		alert(`Error! You can't add already exist item`);
+		showAlert(`Error! You can't add already exist item`);
 	} else {
 		const placeTo = todoItems.filter(item => item.isDone === false).length;
 		todoItems.splice(placeTo, 0, { isDone: false, id: id, description: inputAdd.value });
@@ -312,14 +268,13 @@ function btnSave() {
 function btnEditSave() {
 	const id = parseInt(window.location.hash.replace('#/modify/', ''), 10);
 	const index = todoItems.findIndex(item => item.id === id);
-	console.log(index);
+
 	const inputEdit = document.getElementById('input_modify');
 	const duplicate = todoItems.filter(item => item.description === inputEdit.value);
 	if (duplicate.length > 0 && duplicate[0].id !== id) {
-		alert(`Error! You can't add already exist item`);
+		showAlert(`Error! You can't add already exist item`);
 	} else {
 		let item = todoItems[index];
-		console.log(item);
 		item.description = inputEdit.value;
 		todoItems[index] = item;
 		window.location.hash = '';
@@ -329,6 +284,63 @@ function btnEditSave() {
 
 function btnCancel() {
 	window.location.hash = '';
+}
+
+function getBrowsersNotChrome() {
+	// Opera 8.0+
+	const isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+	// Firefox 1.0+
+	const isFirefox = typeof InstallTrigger !== 'undefined';
+	// Internet Explorer 6-11
+	const isIE = /*@cc_on!@*/false || !!document.documentMode;
+	// Edge 20+
+	const isEdge = !isIE && !!window.StyleMedia;
+
+	if (isOpera || isFirefox || isIE || isEdge) {
+		return true;
+	}
+}
+
+function showAlert(msg) {
+	let elemDiv = document.createElement('div');
+		elemDiv.classList.add('main-todo-modify-alert');
+		elemDiv.id = 'modify-alert';
+		if (getBrowsersNotChrome()) {
+			elemDiv.style.right = 0;
+		}
+
+		let elemDiv1 = document.createElement('div');
+		elemDiv1.innerHTML = `Danger!`;
+		elemDiv.appendChild(elemDiv1);
+
+		let elemDivButtons = document.createElement('div');
+		elemDivButtons.classList.add('main-todo-modify-buttons-close');
+		elemDivButtons.id = 'modify-buttons-alert-close';
+
+		let btnClose = document.createElement('button');
+		btnClose.classList.add('button-close');
+		btnClose.name = 'button';
+		btnClose.id = `btn_close1`;
+		btnClose.innerHTML = `<i class='material-icons '>close</i>`;
+		btnClose.addEventListener('click', this.btnClose('modify-alert'));
+
+		elemDivButtons.appendChild(btnClose);
+		elemDiv.appendChild(elemDivButtons);
+
+		let elemDiv2 = document.createElement('div');
+		elemDiv2.innerHTML = msg;
+		elemDiv.appendChild(elemDiv2);
+		rootNode.appendChild(elemDiv);
+		const delay = 2000; // hide warning eslint no-magic-numbers
+		setTimeout(function() { 
+			rootNode.removeChild(elemDiv); 
+		}, delay);		
+}
+
+function btnClose(elem) {	
+	if (document.getElementById(elem) !== null) {
+		rootNode.removeChild(document.getElementById(elem));
+	}
 }
 
 function changePage() {
